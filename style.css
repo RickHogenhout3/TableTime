@@ -1,0 +1,125 @@
+header {
+    background-color: #E5AB0C;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+header h2 {
+    color: #E1DFDF;
+    font-weight: bolder;
+    margin: 0;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 5px;
+    width: 600px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #d58c0b;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #c17d0a;
+}
+
+
+.sitemap ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.sitemap li {
+    display: inline;
+}
+
+.sitemap a {
+    text-decoration: none;
+    color: #E1DFDF;
+    font-weight: bold;
+}
+
+.sitemap a:hover {
+    text-decoration: underline;
+}
+
+.Table {
+    position: relative; 
+    background-image: url("img/Table.png");
+    background-size: cover;
+    background-position: center;
+    color: #E1DFDF;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Table::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 1;
+    pointer-events: none;
+}
+
+.gradient {
+    position: relative;
+    z-index: 2;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.about .text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.about h2 {
+    margin: 0 0 10px;
+}
+
+.about p {
+    margin: 0;
+}
+
+.about img {
+    max-width: 25%;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
