@@ -1,0 +1,369 @@
+header {
+    background-color: #E5AB0C;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+header h2 {
+    color: #E1DFDF;
+    font-weight: bolder;
+    margin: 0;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 5px;
+    width: 600px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #d58c0b;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #c17d0a;
+}
+
+
+.sitemap ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.sitemap li {
+    display: inline;
+}
+
+.sitemap a {
+    text-decoration: none;
+    color: #E1DFDF;
+    font-weight: bold;
+}
+
+.sitemap a:hover {
+    text-decoration: underline;
+}
+
+.Table {
+    position: relative; 
+    background-image: url("img/Table.png");
+    background-size: cover;
+    background-position: center;
+    color: #E1DFDF;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Table::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 1;
+    pointer-events: none;
+}
+
+.gradient {
+    position: relative;
+    z-index: 2;
+}
+
+.gradient h1 {
+    font-size: 60px;
+    font-weight: bolder;
+}
+
+.gradient h5 {
+    font-size: 32px;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    justify-content: space-between;
+}
+
+.about .text {
+    width: 50%;
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.about p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0 0 10px;
+}
+
+.about h2 {
+    font-size: 28px;
+    margin: 0 0 15px;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 25%;
+    height: 350px;
+    margin-right: 10%;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.button-text-container {
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 0 0 8px 8px
+}
+
+.reservation-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #E5AB0C;
+    border: 2px solid #E5AB0C;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 15px;
+}
+
+.reservation-btn:hover {
+    color: #E5AB0C;
+    background-color: rgb(133, 129, 129);
+}
+
+.additional-text {
+    font-size: 16px;
+    color: #333;
+    max-width: 60%; 
+    text-align: center;
+}
+
+.Restaurant {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    justify-content: space-between;
+}
+
+.Restaurant .text {
+    width: 50%;
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Restaurant p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0 0 10px;
+}
+
+.Restaurant h2 {
+    font-size: 28px;
+    margin: 0 0 15px;
+}
+
+.reserv-container {
+    position: relative;
+    width: 100%;
+    max-width: 25%;
+    height: 350px;
+    overflow: hidden;
+    margin-left: 10%;
+}
+
+.reserv-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.button-text-container {
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 0 0 8px 8px
+}
+
+.reservation-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #E5AB0C;
+    border: 2px solid #E5AB0C;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 15px;
+}
+
+.reservation-btn:hover {
+    color: #E5AB0C;
+    background-color: rgb(133, 129, 129);
+}
+
+.additional-text {
+    font-size: 16px;
+    color: #333;
+    max-width: 60%; 
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    align-items: stretch; /* Ensures all children stretch to the same height */
+    background-image: url('img/reception-counter.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 40px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.form-content {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form-content h2 {
+    padding-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.form-group {
+    width: 100%;
+    padding: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.form-group input[type="submit"] {
+    width: 50%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.form-image {
+    flex: 0 0 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.form-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-row .form-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-row label {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.checkbox-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+}
