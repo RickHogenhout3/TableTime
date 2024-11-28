@@ -279,10 +279,14 @@ header h2 {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
-    flex: 1; /* Allows this section to take up remaining space */
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Adjust form elements spacing */
+    justify-content: space-between;
+}
+
+.form-content h2 {
+    padding-bottom: 20px;
 }
 
 .form-row {
@@ -293,6 +297,7 @@ header h2 {
 
 .form-group {
     width: 100%;
+    padding: 10px;
 }
 
 .form-group label {
@@ -306,7 +311,7 @@ header h2 {
 }
 
 .form-group input[type="submit"] {
-    width: 60%;
+    width: 50%;
     padding: 12px;
     background-color: #007bff;
     color: white;
@@ -340,17 +345,25 @@ header h2 {
 .checkbox-row {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .checkbox-row .form-group {
-    margin-right: 10px;
-}
-
-.checkbox-row label {
     display: flex;
     align-items: center;
 }
 
+.checkbox-row label {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
 .checkbox-row input[type="checkbox"] {
-    margin-right: 60%;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
 }
