@@ -71,7 +71,8 @@
     <!-- Large Round Tables for Groups -->
     <circle id="table10" cx="600" cy="150" r="60" fill="#D9D9D9" data-capacity="8" />
     <text x="600" y="145" fill="black" font-size="12" text-anchor="middle">10</text>
-    <text x="600" y="165" fill="black" font-size="10" text-anchor="middle">8 seats</text>
+    <text x="600" y="165" fill="black" font-size="10" text-anchor="middle">8 seats
+    </text>
 
     <circle id="table11" cx="600" cy="350" r="60" fill="#D9D9D9" data-capacity="8" />
     <text x="600" y="345" fill="black" font-size="12" text-anchor="middle">11</text>
