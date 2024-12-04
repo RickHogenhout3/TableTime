@@ -175,6 +175,7 @@ header h2 {
 .reservation-btn:hover {
     color: #E5AB0C;
     background-color: rgb(133, 129, 129);
+    border: 2px solid rgb(133, 129, 129);
 }
 
 .additional-text {
