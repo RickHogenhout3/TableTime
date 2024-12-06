@@ -2,7 +2,7 @@
 session_start();
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "tabletime";
 $charset = "utf8mb4";
 
