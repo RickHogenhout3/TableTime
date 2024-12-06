@@ -10,24 +10,7 @@
     <title>Table Time</title>
 </head>
 <body>
-    <header class="header-content">
-        <h2 class="logo">
-            Table Time
-        </h2>
-        <form class="search-bar" action="#" method="GET">
-            <input type="text" placeholder="Search..." name="search">
-            <button type="submit" aria-label="Search">
-                <i class="bi bi-search"></i>
-            </button>
-        </form>
-        <nav class="sitemap">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="restaurant.php">Restaurants</a></li>
-                <li><a href="#about-us">About us</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php include_once "header.html" ?>
     <div class="Table">
         <div class="gradient">
             <h1>Welcome to Table Time</h1>

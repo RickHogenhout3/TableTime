@@ -41,24 +41,7 @@
     </style>
 </head>
 <body>
-<header class="header-content">
-        <h2 class="logo">
-            Table Time
-        </h2>
-        <form class="search-bar" action="#" method="GET">
-            <input type="text" placeholder="Search..." name="search">
-            <button type="submit" aria-label="Search">
-                <i class="bi bi-search"></i>
-            </button>
-        </form>
-        <nav class="sitemap">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="restaurant.php">Restaurants</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<?php include_once "header.html" ?>
 
     <div class="container my-4">
         <h1 class="text-center mb-4">Restaurant Naam</h1>
