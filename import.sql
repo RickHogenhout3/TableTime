@@ -12,9 +12,12 @@ CREATE TABLE `restaurants` (
     `location` VARCHAR(255) NOT NULL,
     `phone` VARCHAR(20),
     `capacity` INT NOT NULL,
+    `logo` VARCHAR(255) NULL,
+    `header_image` VARCHAR(255) NULL,
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
 
 CREATE TABLE `reservations` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,

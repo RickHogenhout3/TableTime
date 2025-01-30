@@ -1,0 +1,85 @@
+/* admin index.php styling */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+.admin-header h1 {
+    margin: 0;
+}
+.admin-table {
+    margin-top: 20px;
+}
+.toggle-buttons {
+    padding: 10px;
+}
+
+.menu-button {
+    color: black;
+    font-weight: bold;
+    background-color: rgb(133, 129, 129);
+    border: 2px solid rgb(133, 129, 129);
+}
+
+.menu-button:hover {
+    color: white;
+    background-color: #E5AB0C;
+    border: 2px solid #E5AB0C;
+}
+
+.menu-button:active {
+    color: white !important;
+    background-color: #E5AB0C !important;
+    border: 2px solid #E5AB0C !important;
+}
+
+.reservation-button {
+    color: black;
+    font-weight: bold;
+    background-color: rgb(133, 129, 129);
+    border: 2px solid rgb(133, 129, 129);
+}
+
+.reservation-button:hover {
+    color: white;
+    background-color: #E5AB0C;
+    border: 2px solid #E5AB0C;
+}
+
+.reservation-button:active {
+    color: white !important;
+    background-color: #E5AB0C !important;
+    border: 2px solid #E5AB0C !important;
+}
+
+/* register.php styling */
+
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+    display: flex;
+    justify-content: space-between;
+}
+.form-group div {
+    width: 48%;
+}
+button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
