@@ -59,7 +59,8 @@ Show real-time availability and capacity information based on input.
 **Development:**
 
 - Backend: Node.js (with Express) or Python (Django/Flask) to build a scalable and robust backend for handling reservations and capacity management.
-Frontend: React or Vue.js for responsive user interfaces.
+
+- Frontend: React or Vue.js for responsive user interfaces.
 
 - Database: PostgreSQL or MySQL for relational data management and efficient querying of reservations and restaurant profiles.
 
