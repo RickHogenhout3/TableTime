@@ -6,7 +6,83 @@
     <title>Table Time - Admin Panel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+        .admin-header h1 {
+            margin: 0;
+        }
+        .admin-table {
+            margin-top: 20px;
+        }
+        .toggle-buttons {
+            padding: 10px;
+        }
+
+        .menu-button {
+            color: black;
+            font-weight: bold;
+            background-color: rgb(133, 129, 129);
+            border: 2px solid rgb(133, 129, 129);
+        }
+
+        .menu-button:hover {
+            color: white;
+            background-color: #E5AB0C;
+            border: 2px solid #E5AB0C;
+        }
+
+        .menu-button:active {
+            color: white !important;
+            background-color: #E5AB0C !important;
+            border: 2px solid #E5AB0C !important;
+        }
+
+        .reservation-button {
+            color: black;
+            font-weight: bold;
+            background-color: rgb(133, 129, 129);
+            border: 2px solid rgb(133, 129, 129);
+        }
+
+        .reservation-button:hover {
+            color: white;
+            background-color: #E5AB0C;
+            border: 2px solid #E5AB0C;
+        }
+
+        .reservation-button:active {
+            color: white !important;
+            background-color: #E5AB0C !important;
+            border: 2px solid #E5AB0C !important;
+        }
+
+        .btn-add-product {
+            position: fixed; /* Gebruik fixed zodat het altijd zichtbaar is */
+            bottom: 30px;
+            right: 30px;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-add-product:hover {
+            background-color: #0056b3; /* Donkerdere kleur bij hover */
+            color: #f8f9fa;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-4">
@@ -107,6 +183,12 @@
                 </tbody>
             </table>
         </div>
+        <!-- Add Product Button -->
+        <a href="add-food.php">
+         <button id="add-product-btn" class="btn btn-add-product" title="Add New Product">
+            <i class="fas fa-plus"></i> <!-- Gebruik Font Awesome voor + icoon -->
+        </button>
+         </a>
     </div>
 
     <script>
