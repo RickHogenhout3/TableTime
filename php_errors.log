@@ -1,0 +1,5 @@
+[08-Feb-2025 14:16:53 UTC] PHP Deprecated:  PHP Startup: session.sid_length INI setting is deprecated in Unknown on line 0
+[08-Feb-2025 14:16:53 UTC] PHP Deprecated:  PHP Startup: session.sid_bits_per_character INI setting is deprecated in Unknown on line 0
+[08-Feb-2025 14:17:05 UTC] PHP Deprecated:  PHP Startup: session.sid_length INI setting is deprecated in Unknown on line 0
+[08-Feb-2025 14:17:05 UTC] PHP Deprecated:  PHP Startup: session.sid_bits_per_character INI setting is deprecated in Unknown on line 0
+[08-Feb-2025 14:37:47 UTC] PHP Warning:  Undefined variable $servername in C:\Users\Marti\Bureaublad\bit-academy\projecten\portfolio\TableTime\config.php on line 15
