@@ -12,6 +12,8 @@ CREATE TABLE `restaurants` (
     `location` VARCHAR(255) NOT NULL,
     `phone` VARCHAR(20),
     `capacity` INT NOT NULL,
+    `logo` VARCHAR(255),
+    `header_image` VARCHAR(255),
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -38,6 +40,7 @@ CREATE TABLE `menus` (
     `price` DECIMAL(10, 2) NOT NULL,
     `dish` VARCHAR(255) NOT NULL,
     `is_special` BOOLEAN DEFAULT FALSE,
+    `dish_image` VARCHAR(255),
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants`(`id`) ON DELETE CASCADE
