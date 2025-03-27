@@ -1,3 +1,13 @@
+<?php
+include_once "../config.php";
+
+if (!isset($_SESSION["restaurant_id"])) {
+    header("Location: restaurant-login.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,6 +97,7 @@
     <div class="container mt-4">
         <div class="admin-header">
             <h1>Admin Panel</h1>
+            <a href="logout.php" class="btn btn-danger">Logout</a>
         </div>
 
         <div class="toggle-buttons">

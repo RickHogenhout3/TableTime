@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once "../config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,13 +13,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $statement->execute([$email]);
         $restaurant = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if ($restaurant && password_verify($password, $restaurant["password"])) {
-            $_SESSION["restaurant_id"] = $restaurant["id"];
-            $_SESSION["restaurant_name"] = $restaurant["name"];
-            header("location: index.php"); // Doorsturen naar adminpaneel
-            exit();
+        if ($restaurant) {
+            if (password_verify($password, $restaurant["password"])) {
+                $_SESSION["restaurant_id"] = $restaurant["id"];
+                $_SESSION["restaurant_name"] = $restaurant["name"];
+
+                header("Location: index.php");
+                exit();
+            } else {
+                $message = "Onjuiste inloggegevens.";
+            }
         } else {
-            $message = "Onjuiste inloggegevens.";
+            $message = "Geen account gevonden met dit e-mailadres.";
         }
     }
 }
