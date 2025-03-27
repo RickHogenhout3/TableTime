@@ -62,6 +62,25 @@
             background-color: #E5AB0C !important;
             border: 2px solid #E5AB0C !important;
         }
+
+        .btn-add-product {
+            position: fixed; /* Gebruik fixed zodat het altijd zichtbaar is */
+            bottom: 30px;
+            right: 30px;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-add-product:hover {
+            background-color: #0056b3; /* Donkerdere kleur bij hover */
+        }
     </style>
 </head>
 <body>
@@ -120,6 +139,12 @@
                     </tr>
                 </tbody>
             </table>
+            <!-- Add Product Button -->
+         <a href="menu.php">
+         <button id="add-product-btn" class="btn btn-add-product" title="Add New Product">
+            <i class="fas fa-plus"></i> <!-- Gebruik Font Awesome voor + icoon -->
+        </button>
+         </a>
         </div>
 
         <div id="reservation-table" class="admin-table" style="display: none;">
