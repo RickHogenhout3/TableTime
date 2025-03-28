@@ -14,7 +14,6 @@ $charset = "utf8mb4";
 try {
     $connect = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connection succeeded!";
 } catch (PDOException $error) {
     $message = $error->getMessage();
     echo "Connection failed: $message";
