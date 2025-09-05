@@ -32,6 +32,7 @@ $reservations = $stmtReservations->fetchAll();
     <div class="container mt-4">
         <h1>Welkom, <?= htmlspecialchars($_SESSION["restaurant_name"]); ?>!</h1>
         <a href="logout.php" class="btn btn-danger">Uitloggen</a>
+        <a href="restaurant_update.php" class="btn btn-primary">Restaurant bijwerken</a>
 
         <h2>Jouw Menu Items</h2>
         <table class="table table-bordered">
@@ -62,28 +63,40 @@ $reservations = $stmtReservations->fetchAll();
         <a href="menu.php" class="btn btn-success">Nieuw menu-item toevoegen</a>
 
         <h2>Jouw Reserveringen</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Klant E-mail</th>
-                    <th>Telefoon</th>
-                    <th>Aantal personen</th>
-                    <th>Datum en Tijd</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($reservations as $reservation): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($reservation['customer_email']); ?></td>
-                        <td><?= htmlspecialchars($reservation['phone']); ?></td>
-                        <td><?= htmlspecialchars($reservation['party_size']); ?></td>
-                        <td><?= htmlspecialchars($reservation['reservation_time']); ?></td>
-                        <td><?= htmlspecialchars($reservation['status']); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Klant E-mail</th>
+            <th>Telefoon</th>
+            <th>Aantal personen</th>
+            <th>Datum en Tijd</th>
+            <th>Status</th>
+            <th>Acties</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($reservations as $reservation): ?>
+            <tr>
+                <td><?= htmlspecialchars($reservation['email']); ?></td>
+                <td><?= htmlspecialchars($reservation['phone']); ?></td>
+                <td><?= htmlspecialchars($reservation['party_size']); ?></td>
+                <td><?= htmlspecialchars($reservation['reservation_time']); ?></td>
+                <td><?= htmlspecialchars($reservation['status']); ?></td>
+                <td>
+                    <?php if ($reservation['status'] === 'pending'): ?>
+                        <a href="confirm_reservation.php?id=<?= $reservation['id']; ?>" 
+                           class="btn btn-success btn-sm"
+                           onclick="return confirm('Weet je zeker dat je deze reservering wilt bevestigen?');">
+                           Bevestigen
+                        </a>
+                    <?php else: ?>
+                        -
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
     </div>
 </body>
 </html>
