@@ -1,4 +1,12 @@
+<?php
+include "config.php";
+
+$query = $connect->query("SELECT id, name, location, phone FROM restaurants");
+$restaurants = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
+
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
@@ -7,73 +15,67 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Table Time - Restaurants</title>
+    <style>
+        .restaurant-card {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        .restaurant-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        .restaurant-details {
+            flex: 1;
+        }
+        .rating {
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .delivery-info {
+            font-size: 14px;
+            color: #555;
+        }
+        .free-delivery {
+            background: #ffc107;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #333;
+        }
+    </style>
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 </head>
 <body>
-    <?php include 'header.html'; ?>
+<?php include_once "header.html"; ?>
 
-    <div class="container mt-4 d-flex">
-        <!-- Zijbalk filters -->
-        <aside class="me-4" style="width: 250px;">
-            <h4>Filters</h4>
-            <label><input type="checkbox"> Nu geopend</label><br>
-            <label><input type="checkbox"> Nieuw</label><br>
-            <h5 class="mt-3">Minimum bestelbedrag</h5>
-            <label><input type="radio" name="min-price"> €10 of minder</label><br>
-            <label><input type="radio" name="min-price"> €15 of minder</label><br>
-        </aside>
+<div class="container mt-4">
+    <h2 class="mb-4">Bestel bij onze restaurants</h2>
+    
+    <?php foreach ($restaurants as $restaurant): ?>
+        <div class="restaurant-card">
+            <img src="<?= htmlspecialchars($restaurant['logo'] ?? 'placeholder.jpg') ?>" alt="<?= htmlspecialchars($restaurant['name']) ?>">
+            <div class="restaurant-details">
+                <h5><?= htmlspecialchars($restaurant['name']) ?></h5>
+                <p class="delivery-info">
+                    ⭐ <span class="rating"><?= rand(4, 5) ?>,<?= rand(0, 9) ?></span> (<?= rand(50, 300) ?>+) · 📍 <?= htmlspecialchars($restaurant['location']) ?><br>
+                    🚴 <?= rand(20, 60) ?> min · 💰 Min. €<?= rand(35, 80) ?>
+                </p>
+                
+                <br><br>
+                <a href="menu.php?id=<?= $restaurant['id'] ?>" class="btn btn-primary btn-sm">Bekijk Menu</a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
 
-        <!-- Restaurant lijst/grid -->
-        <main class="flex-grow-1">
-            <h3>Populaire merken</h3>
-            <div class="d-flex overflow-auto">
-                <div class="card me-3" style="width: 200px;">
-                    <img src="https://via.placeholder.com/200" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">FEBO Purmerend Koestraat</h5>
-                        <p>4.5 ⭐ - Snacks, Burgers</p>
-                    </div>
-                </div>
-                <div class="card me-3" style="width: 200px;">
-                    <img src="https://via.placeholder.com/200" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Subway Purmerend</h5>
-                        <p>3.4 ⭐ - Lunch, Amerikaans</p>
-                    </div>
-                </div>
-            </div>
-            <h3 class="mt-4">Alle restaurants</h3>
-            <div class="list-group">
-                <div class="list-group-item d-flex">
-                    <img src="https://via.placeholder.com/100" class="me-3">
-                    <div>
-                        <h5>Gochu Gang - Korean Fried Chicken</h5>
-                        <p>3.8 ⭐ - Burgers, Aziatisch</p>
-                    </div>
-                </div>
-                <div class="list-group-item d-flex">
-                    <img src="https://via.placeholder.com/100" class="me-3">
-                    <div>
-                        <h5>Karaage Kid - Japanese Fried Chicken</h5>
-                        <p>4.3 ⭐ - Aziatisch, Kip</p>
-                    </div>
-                </div>
-                <div class="list-group-item d-flex">
-                    <img src="https://via.placeholder.com/100" class="me-3">
-                    <div>
-                        <h5>Subway</h5>
-                        <p>3.4 ⭐ - Lunch, Amerikaans</p>
-                    </div>
-                </div>
-                <div class="list-group-item d-flex">
-                    <img src="https://via.placeholder.com/100" class="me-3">
-                    <div>
-                        <h5>FEBO Purmerend Koestraat</h5>
-                        <p>4.5 ⭐ - Snacks, Burgers</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
 </body>
 </html>

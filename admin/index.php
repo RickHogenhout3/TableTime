@@ -1,5 +1,27 @@
+<?php
+include_once "../config.php";
+
+if (!isset($_SESSION["restaurant_id"])) {
+    header("Location: restaurant-login.php");
+    exit();
+}
+
+$restaurant_id = $_SESSION["restaurant_id"];
+
+$queryMenu = "SELECT * FROM menus WHERE restaurant_id = ?";
+$stmtMenu = $connect->prepare($queryMenu);
+$stmtMenu->execute([$restaurant_id]);
+$menuItems = $stmtMenu->fetchAll();
+
+// Haal reserveringen op voor het ingelogde restaurant
+$queryReservations = "SELECT * FROM reservations WHERE restaurant_id = ?";
+$stmtReservations = $connect->prepare($queryReservations);
+$stmtReservations->execute([$restaurant_id]);
+$reservations = $stmtReservations->fetchAll();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,121 +108,73 @@
 </head>
 <body>
     <div class="container mt-4">
-        <div class="admin-header">
-            <h1>Admin Panel</h1>
-        </div>
+        <h1>Welkom, <?= htmlspecialchars($_SESSION["restaurant_name"]); ?>!</h1>
+        <a href="logout.php" class="btn btn-danger">Uitloggen</a>
+        <a href="restaurant_update.php" class="btn btn-primary">Restaurant bijwerken</a>
 
-        <div class="toggle-buttons">
-            <button id="toggle-products" class="menu-button btn btn-warning">Menu Items</button>
-            <button id="toggle-orders" class="reservation-button btn btn-warning">Reservations</button>
-        </div>
-
-        <div id="product-table" class="admin-table">
-            <table class="table table-bordered table-hover">
-                <thead class="thead-light">
+        <h2>Jouw Menu Items</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Beschrijving</th>
+                    <th>Prijs (€)</th>
+                    <th>Afbeelding</th>
+                    <th>Acties</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($menuItems as $item): ?>
                     <tr>
-                        <th>Dish Name</th>
-                        <th>Description</th>
-                        <th>Price (€)</th>
-                        <th>Image URL</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Mock data from menus table -->
-                    <tr>
-                        <td>Margherita Pizza</td>
-                        <td>Classic pizza with fresh mozzarella, basil, and tomato sauce.</td>
-                        <td>12.50</td>
-                        <td><a href="https://example.com/images/margherita.jpg" target="_blank">View Image</a></td>
+                        <td><?= htmlspecialchars($item['name']); ?></td>
+                        <td><?= htmlspecialchars($item['description']); ?></td>
+                        <td><?= number_format($item['price'], 2, ',', '.'); ?></td>
+                        <td> <?= !empty($item['image_url']) ? '<img src="' . htmlspecialchars($item['image_url']) . '" width="50">' : ''; ?> </td>
                         <td>
-                            <button class="btn btn-primary btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <a href="edit_menu.php?id=<?= $item['id']; ?>" class="btn btn-primary btn-sm">Bewerk</a>
+                            <a href="delete_menu.php?id=<?= $item['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Weet je zeker dat je dit wilt verwijderen?');">Verwijder</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Spaghetti Carbonara</td>
-                        <td>Creamy pasta with pancetta, parmesan, and egg yolk.</td>
-                        <td>14.00</td>
-                        <td><a href="https://example.com/images/carbonara.jpg" target="_blank">View Image</a></td>
-                        <td>
-                            <button class="btn btn-primary btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiramisu</td>
-                        <td>Traditional Italian dessert with mascarpone and espresso.</td>
-                        <td>7.00</td>
-                        <td><a href="https://example.com/images/tiramisu.jpg" target="_blank">View Image</a></td>
-                        <td>
-                            <button class="btn btn-primary btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <a href="menu.php" class="btn btn-success">Nieuw menu-item toevoegen</a>
 
-        <div id="reservation-table" class="admin-table" style="display: none;">
-            <table class="table table-bordered table-hover">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Customer Email</th>
-                        <th>Phone</th>
-                        <th>Party Size</th>
-                        <th>Reservation Time</th>
-                        <th>Special Requests</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Mock data from reservations table -->
-                    <tr>
-                        <td>john.doe@example.com</td>
-                        <td>+123456789</td>
-                        <td>4</td>
-                        <td>2024-12-06 19:30</td>
-                        <td>Window seat if available.</td>
-                        <td>Confirmed</td>
-                    </tr>
-                    <tr>
-                        <td>jane.smith@example.com</td>
-                        <td>+987654321</td>
-                        <td>2</td>
-                        <td>2024-12-07 18:00</td>
-                        <td>None</td>
-                        <td>Pending</td>
-                    </tr>
-                    <tr>
-                        <td>alex.jones@example.com</td>
-                        <td>+1122334455</td>
-                        <td>6</td>
-                        <td>2024-12-06 20:00</td>
-                        <td>Birthday celebration setup.</td>
-                        <td>Cancelled</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- Add Product Button -->
-        <a href="add-food.php">
-         <button id="add-product-btn" class="btn btn-add-product" title="Add New Product">
-            <i class="fas fa-plus"></i> <!-- Gebruik Font Awesome voor + icoon -->
-        </button>
-         </a>
+        <h2>Jouw Reserveringen</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Klant E-mail</th>
+            <th>Telefoon</th>
+            <th>Aantal personen</th>
+            <th>Datum en Tijd</th>
+            <th>Status</th>
+            <th>Acties</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($reservations as $reservation): ?>
+            <tr>
+                <td><?= htmlspecialchars($reservation['email']); ?></td>
+                <td><?= htmlspecialchars($reservation['phone']); ?></td>
+                <td><?= htmlspecialchars($reservation['party_size']); ?></td>
+                <td><?= htmlspecialchars($reservation['reservation_time']); ?></td>
+                <td><?= htmlspecialchars($reservation['status']); ?></td>
+                <td>
+                    <?php if ($reservation['status'] === 'pending'): ?>
+                        <a href="confirm_reservation.php?id=<?= $reservation['id']; ?>" 
+                           class="btn btn-success btn-sm"
+                           onclick="return confirm('Weet je zeker dat je deze reservering wilt bevestigen?');">
+                           Bevestigen
+                        </a>
+                    <?php else: ?>
+                        -
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
     </div>
-
-    <script>
-        document.getElementById("toggle-products").addEventListener("click", function () {
-            document.getElementById("product-table").style.display = "block";
-            document.getElementById("reservation-table").style.display = "none";
-        });
-
-        document.getElementById("toggle-orders").addEventListener("click", function () {
-            document.getElementById("product-table").style.display = "none";
-            document.getElementById("reservation-table").style.display = "block";
-        });
-    </script>
 </body>
 </html>

@@ -1,75 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Restaurant Registration</title>
-    <style>
-        body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f8f9fa;
+<?php
+include_once "../config.php"; // Databaseverbinding
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Wachtwoord hashen
+    $location = trim($_POST["location"]);
+    $phone = trim($_POST["phone"]);
+    $capacity = intval($_POST["capacity"]);
+
+    // Controleer of het e-mailadres al bestaat
+    $checkQuery = $connect->prepare("SELECT id FROM restaurants WHERE email = ?");
+    $checkQuery->execute([$email]);
+    
+    if ($checkQuery->rowCount() > 0) {
+        $error = "Dit e-mailadres is al in gebruik.";
+    } else {
+        // Voeg restaurant toe aan database
+        $sql = "INSERT INTO restaurants (name, email, password, location, phone, capacity, created_at, updated_at) 
+                VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
+        $stmt = $connect->prepare($sql);
+
+        if ($stmt->execute([$name, $email, $password, $location, $phone, $capacity])) {
+            header("Location: restaurant-login.php?success=1");
+            exit();
+        } else {
+            $error = "Er ging iets mis. Probeer het opnieuw.";
+        }
+    }
 }
+?>
+
+<!doctype html>
+<html lang="nl">
+<head>
+    <title>Table Time - Registreren</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { font: 14px sans-serif; }
+        .wrapper { width: 360px; padding: 20px; margin: auto; margin-top: 50px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2 class="text-center">Register Your Restaurant</h2>
-        <form action="register.php" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <div>
-                    <label for="name">Restaurant Name:</label>
-                    <input type="text" id="name" name="name" class="form-control" required>
-                </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" class="form-control" required>
-                </div>
-                <div>
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" class="form-control" required>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <div>
-                    <label for="phone">Phone:</label>
-                    <input type="text" id="phone" name="phone" class="form-control">
-                </div>
-                <div>
-                    <label for="capacity">Capacity:</label>
-                    <input type="number" id="capacity" name="capacity" class="form-control" required>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <div class="w-100">
-                    <label for="logo">Logo (optional):</label>
-                    <input type="file" id="logo" name="logo" class="form-control-file" accept="image/*">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <div class="w-100">
-                    <label for="header">Header Image (optional):</label>
-                    <input type="file" id="header" name="header" class="form-control-file" accept="image/*">
-                </div>
-            </div>
-            
-            <button type="submit">Register</button>
-        </form>
-    </div>
+
+<div class="wrapper">
+    <h2>Registreren</h2>
+    <p>Vul onderstaande gegevens in om uw restaurant aan te maken.</p>
+
+    <?php if (isset($error)): ?>
+        <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
+
+    <form action="register.php" method="POST">
+        <div class="form-group">
+            <label>Restaurantnaam</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>    
+        <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Wachtwoord</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Locatie</label>
+            <input type="text" name="location" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Telefoonnummer</label>
+            <input type="text" name="phone" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Capaciteit</label>
+            <input type="number" name="capacity" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Registreren">
+            <a href="restaurant-login.php" class="btn btn-danger">Terug</a>
+        </div>
+    </form>
+</div>
+
 </body>
 </html>
