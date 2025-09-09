@@ -80,8 +80,10 @@ $categorized_menu = array_filter($categorized_menu);
 <div class="container my-4">
     <h1 class="text-center mb-4"><?= htmlspecialchars($restaurant['name']) ?> - Menu</h1>
 
-    <!-- Tabs for Dish Categories -->
-    <ul class="nav nav-tabs justify-content-center my-4">
+<!-- Tabs in het midden + reserveerknop rechts -->
+<div class="position-relative my-4">
+    <!-- Tabs gecentreerd -->
+    <ul class="nav nav-tabs justify-content-center">
         <?php $first = true; ?>
         <?php foreach ($categories as $category): ?>
             <?php if (!empty($categorized_menu[$category])): ?>
@@ -96,6 +98,15 @@ $categorized_menu = array_filter($categorized_menu);
             <?php endif; ?>
         <?php endforeach; ?>
     </ul>
+
+    <!-- Reserveerknop rechts -->
+    <a href="reservering.php?id=<?= $restaurant_id ?>" 
+       class="btn btn-warning position-absolute" 
+       style="right: 0; top: 0;">
+       Reserveer nu
+    </a>
+</div>
+
 
     <!-- Menu Items per Dish Category -->
     <div class="tab-content">

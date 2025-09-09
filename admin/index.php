@@ -167,6 +167,11 @@ $reservations = $stmtReservations->fetchAll();
                            onclick="return confirm('Weet je zeker dat je deze reservering wilt bevestigen?');">
                            Bevestigen
                         </a>
+                        <a href="deny_reservation.php?id=<?= $reservation['id']; ?>" 
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Weet je zeker dat je deze reservering wilt Weigeren?');">
+                            Weigeren
+                        </a>
                     <?php else: ?>
                         -
                     <?php endif; ?>
